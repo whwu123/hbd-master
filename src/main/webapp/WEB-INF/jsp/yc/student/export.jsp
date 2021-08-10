@@ -18,7 +18,7 @@
 				<div class="ibox float-e-margins">
 					<div class="ibox-content">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label m-b">上传文件:</label>
+                               <%-- <label class="col-sm-2 control-label m-b">上传文件:</label>--%>
                                 <div class="col-sm-2">
                                     <div id="filePicker2">上传</div>
                                 </div>
@@ -27,10 +27,10 @@
                                 </div>
                             </div>
 
-                        <div class="form-group">
+                       <%-- <div class="form-group">
                             <button class="btn btn-info" id="xiazaiMoban" onclick ="xiazaiMoban()" style="margin-left: 15px;">下载模板</button>
 
-                        </div>
+                        </div>--%>
                     </div>
 				</div>
 			</div>

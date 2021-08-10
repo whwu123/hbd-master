@@ -1,23 +1,18 @@
 package com.active4j.hr.yc.controller;
 
 import com.active4j.hr.base.controller.BaseController;
-
 import com.active4j.hr.core.model.AjaxJson;
-
 import com.active4j.hr.system.entity.SysDeptEntity;
 import com.active4j.hr.system.service.SysDeptService;
 import com.active4j.hr.yc.entity.YcStudentEntity;
 import com.active4j.hr.yc.service.YcStudentService;
 import lombok.extern.slf4j.Slf4j;
-
-
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,11 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
 import java.util.Map;
 
 
@@ -93,14 +86,18 @@ public class ExportChargeController extends BaseController {
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(Model model) {
-
         return "yc/student/export";
     }
 
     @RequestMapping(value = "/index2", method = RequestMethod.GET)
     public String index2(Model model) {
-
         return "yc/student/export2";
+    }
+
+
+    @RequestMapping(value = "/index3", method = RequestMethod.GET)
+    public String index3(Model model) {
+        return "yc/paymentrecord/export";
     }
 
     @RequestMapping("/export2")

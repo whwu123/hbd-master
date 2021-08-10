@@ -17,9 +17,9 @@
 			<div class="ibox float-e-margins">
 				<div class="ibox-content">
 					<div class="form-group">
-						<label class="col-sm-2 control-label m-b">上传附件:</label>
+						<%--<label class="col-sm-2 control-label m-b">上传附件:</label>--%>
 						<div class="col-sm-2">
-							<div id="filePicker2">上传</div>
+							<div id="filePicker2">上传模板</div>
 						</div>
 						<div class="col-sm-4">
 							<div id="fileList2" class="uploader-list"></div>

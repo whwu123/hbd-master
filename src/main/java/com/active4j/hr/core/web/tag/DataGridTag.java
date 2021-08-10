@@ -1,29 +1,22 @@
 package com.active4j.hr.core.web.tag;
 
-import java.io.IOException;
-import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.tagext.TagSupport;
-
-import org.apache.commons.lang3.StringUtils;
-
 import com.active4j.hr.core.shiro.ShiroUtils;
 import com.active4j.hr.core.util.DateUtils;
-import com.active4j.hr.core.util.oConvertUtils;
 import com.active4j.hr.core.web.tag.model.DataGridColumn;
 import com.active4j.hr.core.web.tag.model.DataGridToolBarUrl;
 import com.active4j.hr.core.web.tag.model.DataGridUrl;
 import com.active4j.hr.core.web.tag.model.OptTypeDirection;
 import com.active4j.hr.system.entity.SysDicValueEntity;
 import com.active4j.hr.system.util.SystemUtils;
+import org.apache.commons.lang3.StringUtils;
+
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspTagException;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.tagext.TagSupport;
+import java.io.IOException;
+import java.text.MessageFormat;
+import java.util.*;
 
 
 /**
@@ -336,7 +329,7 @@ public class DataGridTag extends TagSupport {
 					sbToolBar.append("<button class=\'btn btn-primary\' style=\'margin-left:3px;\' type=\'button\' onclick=\'" + toolBar.getFunName() + "();\'><i class=\'fa fa-level-up\'></i>&nbsp;导出</button>");
 				}else if(StringUtils.equals("import", toolBar.getType())){
 					//导入
-					sbToolBar.append("<button class=\'btn btn-primary\' style=\'margin-left:5px;\' type=\'button\' onclick=\'importQh();\'><i class=\'fa fa-level-down\'></i>&nbsp;导入</button>");
+					sbToolBar.append("<button class=\'btn btn-primary\' style=\'margin-left:5px;\' type=\'button\' onclick=\'" + toolBar.getFunName() + "();\'><i class=\'fa fa-level-down\'></i>&nbsp;导入</button>");
 				}else if(StringUtils.equals("print", toolBar.getType())){
 					//打印
 					sbToolBar.append("<button class=\'btn btn-primary\' style=\'margin-left:3px;\' type=\'button\' onclick=\'printQh();\'><i class=\'fa fa-print\'></i>&nbsp;打印</button>");
