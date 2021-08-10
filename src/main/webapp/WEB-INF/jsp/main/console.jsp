@@ -10,7 +10,7 @@
 <div class="row">
 
     <div class="bs-example  border-bottom white-bg dashboard-header">
-        <button class="btn btn-primary" style="    margin-bottom: 5px" type="button" onclick="daochuIndex();"><i class="fa fa-level-up"></i>导出</button>
+        <button class="btn btn-primary" style="    margin-bottom: 5px" type="button" onclick="daochuIndex('${quxianModel.quxianName}');"><i class="fa fa-level-up"></i>导出</button>
         <table class="table table-hover">
 
             <thead>
@@ -26,18 +26,20 @@
             <thead>
             <tr class="warning" style="font-weight: bold">
                 <td>#</td>
-                <td>${quxianModel.quxianName}</td>
-                <td style="color: red">${quxianModel.xuepingxian}</td>
-                <td style="color: red">${quxianModel.yiwaixian}</td>
-                <td style="color: red">${quxianModel.jianhurenxian}</td>
-                <td style="color: red">${quxianModel.total}</td>
+                <td style="color: #337ab7">${quxianModel.quxianName}</td>
+                <td style="color: #148cf3">${quxianModel.xuepingxian}</td>
+                <td style="color: #148cf3">${quxianModel.yiwaixian}</td>
+                <td style="color: #148cf3">${quxianModel.jianhurenxian}</td>
+                <td style="color: #148cf3">${quxianModel.total}</td>
             </tr>
             </thead>
             <tbody>
             <c:forEach var="im" items="${indexmodelList}" varStatus="s">
-                <tr onclick="myFunction('${im.schoolName}')" >
+                <tr  >
                         <td scope="row">${s.count}</td>
-                        <td>${im.schoolName}</td>
+                        <td>
+                            <a href="webController/toSchoolIndex?name=${im.schoolName}" data-index="5">${im.schoolName}</a>
+                        </td>
                         <td>${im.xuepingxian}</td>
                         <td>${im.yiwaixian}</td>
                         <td>${im.jianhurenxian}</td>
@@ -52,9 +54,16 @@
 </body>
 <script>
     function myFunction(schoolName){
-        alert(schoolName);
-        window.location.href="http//:www.baidu.com";
+        window.open("webController/toSchoolIndex?name="+schoolName)
+
+
     }
+
+    function daochuIndex(quxianName){
+        window.location.href="reportController/exportQuxian?name="+quxianName;
+
+    }
+
 
 </script>
 

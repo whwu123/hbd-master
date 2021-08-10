@@ -1,6 +1,7 @@
 package com.active4j.hr.yc.controller;
 
 import com.active4j.hr.base.controller.BaseController;
+import com.active4j.hr.common.constant.GlobalConstant;
 import com.active4j.hr.core.query.QueryUtils;
 import com.active4j.hr.core.shiro.ShiroUtils;
 import com.active4j.hr.core.web.tag.model.DataGrid;
@@ -9,6 +10,7 @@ import com.active4j.hr.system.entity.SysRoleEntity;
 import com.active4j.hr.system.model.SysUserModel;
 import com.active4j.hr.system.service.SysDeptService;
 import com.active4j.hr.system.service.SysUserService;
+import com.active4j.hr.yc.entity.Indexmodel;
 import com.active4j.hr.yc.entity.YcPaymentRecord;
 import com.active4j.hr.yc.service.YcPaymentRecordService;
 import com.active4j.hr.yc.util.ExcelUtil;
@@ -26,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -119,6 +122,9 @@ public class ReportFormController extends BaseController {
 
     }
 
+
+
+
     //发送响应流方法
     public void setResponseHeader(HttpServletResponse response, String fileName) {
         try {
@@ -134,6 +140,207 @@ public class ReportFormController extends BaseController {
             response.addHeader("Cache-Control", "no-cache");
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+
+    /**
+     * 导出报表
+     * @return
+     */
+    @RequestMapping(value = "/exportQuxian")
+    @ResponseBody
+    public void exportQuxian(String name, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) throws Exception {
+        if(name!=null && !name.isEmpty()){
+            List<Indexmodel> indexmodelList = new ArrayList<>();
+            Indexmodel quxianModel = new Indexmodel();
+            quxianModel.setQuxianName(name);
+            quxianModel.setSchoolName(name);
+            //查询区县学平险的总人数和总金额
+            String totalXpxCount = ycPaymentRecordService.getCountQuxian(name, GlobalConstant.hbd_baoxian_xuesheng);
+            String totalXpxSUm = ycPaymentRecordService.getSumQuxian(name,GlobalConstant.hbd_baoxian_xuesheng);
+            if(totalXpxSUm == null){
+                totalXpxSUm = "0";
+            }
+            quxianModel.setXuepingxian(totalXpxCount+"人/"+totalXpxSUm+"元");
+            //查询区县意外险的总人数和总金额
+            String totalYwCount = ycPaymentRecordService.getCountQuxian(name,GlobalConstant.hbd_baoxian_yiwai);
+            String totalYwSUm = ycPaymentRecordService.getSumQuxian(name,GlobalConstant.hbd_baoxian_yiwai);
+            if(totalYwSUm == null){
+                totalYwSUm = "0";
+            }
+            quxianModel.setYiwaixian(totalYwCount+"人/"+totalYwSUm+"元");
+            //查询区县监护人险的总人数和总金额
+            String totalJhrCount = ycPaymentRecordService.getCountQuxian(name,GlobalConstant.hbd_baoxian_jianhuren);
+            String totaljhrSUm = ycPaymentRecordService.getSumQuxian(name,GlobalConstant.hbd_baoxian_jianhuren);
+            if(totaljhrSUm == null){
+                totaljhrSUm = "0";
+            }
+            quxianModel.setJianhurenxian(totalJhrCount+"人/"+totaljhrSUm+"元");
+            int totalQuXianCount = Integer.parseInt(totalXpxCount)+ Integer.parseInt(totalYwCount)+ Integer.parseInt(totalJhrCount);
+            int totalQuXianSum = Integer.parseInt(totalXpxSUm)+ Integer.parseInt(totalYwSUm)+ Integer.parseInt(totaljhrSUm);
+            quxianModel.setTotal(totalQuXianCount+"人/"+totalQuXianSum+"元");
+            indexmodelList.add(quxianModel);
+
+            List<String> schoolName = ycPaymentRecordService.getschoolNameByQuxianName(name);
+            if(schoolName.size()>0){
+                for (int j = 0; j<schoolName.size();j++){
+                    Indexmodel indexmodel = new Indexmodel();
+                    indexmodel.setQuxianName(name);
+                    indexmodel.setSchoolName(schoolName.get(j));
+                    //根据学校名称查询出学平险总人数和总金额
+                    String xpxCount = ycPaymentRecordService.getCount(schoolName.get(j),GlobalConstant.hbd_baoxian_xuesheng);
+                    String xpxSum = ycPaymentRecordService.getSum(schoolName.get(j),GlobalConstant.hbd_baoxian_xuesheng);
+                    if(xpxSum == null){
+                        xpxSum = "0";
+                    }
+                    indexmodel.setXuepingxian(xpxCount+"人/"+xpxSum+"元");
+                    //根据学校名称查询出意外险总人数和总金额
+                    String ywCount = ycPaymentRecordService.getCount(schoolName.get(j),GlobalConstant.hbd_baoxian_yiwai);
+                    String ywSum = ycPaymentRecordService.getSum(schoolName.get(j),GlobalConstant.hbd_baoxian_yiwai);
+                    if(ywSum == null){
+                        ywSum = "0";
+                    }
+                    indexmodel.setYiwaixian(ywCount+"人/"+ywSum+"元");
+                    //根据学校名称查询出监护人险总人数和总金额
+                    String jhrCount = ycPaymentRecordService.getCount(schoolName.get(j),GlobalConstant.hbd_baoxian_jianhuren);
+                    String jhrSum = ycPaymentRecordService.getSum(schoolName.get(j),GlobalConstant.hbd_baoxian_jianhuren);
+                    if(jhrSum == null){
+                        jhrSum = "0";
+                    }
+                    indexmodel.setJianhurenxian(jhrCount+"人/"+jhrSum+"元");
+                    int totalCount = Integer.parseInt(xpxCount)+ Integer.parseInt(ywCount)+ Integer.parseInt(jhrCount);
+                    int totalSum = Integer.parseInt(xpxSum)+ Integer.parseInt(ywSum)+ Integer.parseInt(jhrSum);
+                    indexmodel.setTotal(totalCount+"人/"+totalSum+"元");
+                    indexmodelList.add(indexmodel);
+                }
+            }
+            //excel标题
+            String[] title = {"名称","学生平安保险","交通意外、重大疾病险","监护人责任险","合计"};
+            //excel文件名
+            String fileName = "学生缴费记录表"+System.currentTimeMillis()+".xls";
+            //sheet名
+            String sheetName = "学生缴费记录表";
+            String[][] content = new String[indexmodelList.size()+1][title.length];
+            for (int i = 0; i < indexmodelList.size(); i++) {
+                Indexmodel obj = indexmodelList.get(i);
+                content[i][0] = obj.getSchoolName();
+                content[i][1] = obj.getXuepingxian();
+                content[i][2] = obj.getJianhurenxian();
+                content[i][3] = obj.getJianhurenxian();
+                content[i][4] = obj.getTotal();
+            }
+            //创建HSSFWorkbook
+            HSSFWorkbook wb = ExcelUtil.getHSSFWorkbook(sheetName, title, content, null);
+            //响应到客户端
+            try {
+                this.setResponseHeader(response, fileName);
+                OutputStream os = response.getOutputStream();
+                wb.write(os);
+                os.flush();
+                os.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    /**
+     * 导出报表
+     * @return
+     */
+    @RequestMapping(value = "/exportXuexiao")
+    @ResponseBody
+    public void exportXuexiao(String name, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) throws Exception {
+        if(name!=null && !name.isEmpty()){
+            List<Indexmodel> indexmodelSchoolList = new ArrayList<>();
+            Indexmodel xuexiaoModel = new Indexmodel();
+            xuexiaoModel.setSchoolName(name);
+            xuexiaoModel.setNianjiName(name);
+            //查询学校学平险的总人数和总金额
+            String totalXpxSchoolCount = ycPaymentRecordService.getCountSchool(name,GlobalConstant.hbd_baoxian_xuesheng);
+            String totalXpxSchoolSUm = ycPaymentRecordService.getSumSchool(name,GlobalConstant.hbd_baoxian_xuesheng);
+            if(totalXpxSchoolSUm == null){
+                totalXpxSchoolSUm = "0";
+            }
+            xuexiaoModel.setXuepingxian(totalXpxSchoolCount+"人/"+totalXpxSchoolSUm+"元");;
+            //查询区县意外险的总人数和总金额
+            String totalYwSchoolCount = ycPaymentRecordService.getCountSchool(name,GlobalConstant.hbd_baoxian_yiwai);
+            String totalYwSchoolSUm = ycPaymentRecordService.getSumSchool(name,GlobalConstant.hbd_baoxian_yiwai);
+            if(totalYwSchoolSUm == null){
+                totalYwSchoolSUm = "0";
+            }
+            xuexiaoModel.setYiwaixian(totalYwSchoolCount+"人/"+totalYwSchoolSUm+"元");;
+            //查询区县监护人险的总人数和总金额
+            String totalJhrSchoolCount = ycPaymentRecordService.getCountSchool(name,GlobalConstant.hbd_baoxian_jianhuren);
+            String totaljhrSchoolSUm = ycPaymentRecordService.getSumSchool(name,GlobalConstant.hbd_baoxian_jianhuren);
+            if(totaljhrSchoolSUm == null){
+                totaljhrSchoolSUm = "0";
+            }
+            xuexiaoModel.setJianhurenxian(totalJhrSchoolCount+"人/"+totaljhrSchoolSUm+"元");;
+            int totalSchoolCount = Integer.parseInt(totalXpxSchoolCount)+ Integer.parseInt(totalYwSchoolCount)+ Integer.parseInt(totalJhrSchoolCount);
+            int totalSchoolSum = Integer.parseInt(totalXpxSchoolSUm)+ Integer.parseInt(totalYwSchoolSUm)+ Integer.parseInt(totaljhrSchoolSUm);
+            xuexiaoModel.setTotal(totalSchoolCount+"人/"+totalSchoolSum+"元");
+            indexmodelSchoolList.add(xuexiaoModel);
+
+            List<String> nianjiNameList = ycPaymentRecordService.getnianjiNameBySchoolName(name);
+            if(nianjiNameList.size()>0){
+                for (int k = 0;k<nianjiNameList.size();k++){
+                    Indexmodel indexmodel2 = new Indexmodel();
+                    indexmodel2.setSchoolName(name);
+                    indexmodel2.setNianjiName(nianjiNameList.get(k));
+                    String xpxCountNianji = ycPaymentRecordService.getCountNianjji(nianjiNameList.get(k),GlobalConstant.hbd_baoxian_xuesheng,name);
+                    String xpxSumNianji = ycPaymentRecordService.getSumNianjji(nianjiNameList.get(k),GlobalConstant.hbd_baoxian_xuesheng,name);
+                    if(xpxSumNianji == null){
+                        xpxSumNianji = "0";
+                    }
+                    indexmodel2.setXuepingxian(xpxCountNianji+"人/"+xpxSumNianji+"元");
+                    String ywCountNianji = ycPaymentRecordService.getCountNianjji(nianjiNameList.get(k),GlobalConstant.hbd_baoxian_yiwai,name);
+                    String ywSumNianji = ycPaymentRecordService.getSumNianjji(nianjiNameList.get(k),GlobalConstant.hbd_baoxian_yiwai,name);
+                    if(ywSumNianji == null){
+                        ywSumNianji = "0";
+                    }
+                    indexmodel2.setYiwaixian(ywCountNianji+"人/"+ywSumNianji+"元");
+                    String jhrCountNianji = ycPaymentRecordService.getCountNianjji(nianjiNameList.get(k),GlobalConstant.hbd_baoxian_jianhuren,name);
+                    String jhrSumNianji = ycPaymentRecordService.getSumNianjji(nianjiNameList.get(k),GlobalConstant.hbd_baoxian_jianhuren,name);
+                    if(jhrSumNianji == null){
+                        jhrSumNianji = "0";
+                    }
+                    indexmodel2.setJianhurenxian(jhrCountNianji+"人/"+jhrSumNianji+"元");
+                    int totalCountNianji = Integer.parseInt(xpxCountNianji)+ Integer.parseInt(ywCountNianji)+ Integer.parseInt(jhrCountNianji);
+                    int totalSumNianji = Integer.parseInt(xpxSumNianji)+ Integer.parseInt(ywSumNianji)+ Integer.parseInt(jhrSumNianji);
+                    indexmodel2.setTotal(totalCountNianji+"人/"+totalSumNianji+"元");
+                    indexmodelSchoolList.add(indexmodel2);
+                }
+            }
+
+            //excel标题
+            String[] title = {"名称","学生平安保险","交通意外、重大疾病险","监护人责任险","合计"};
+            //excel文件名
+            String fileName = "学生缴费记录表"+System.currentTimeMillis()+".xls";
+            //sheet名
+            String sheetName = "学生缴费记录表";
+            String[][] content = new String[indexmodelSchoolList.size()+1][title.length];
+            for (int i = 0; i < indexmodelSchoolList.size(); i++) {
+                Indexmodel obj = indexmodelSchoolList.get(i);
+                content[i][0] = obj.getNianjiName();
+                content[i][1] = obj.getXuepingxian();
+                content[i][2] = obj.getJianhurenxian();
+                content[i][3] = obj.getJianhurenxian();
+                content[i][4] = obj.getTotal();
+            }
+            //创建HSSFWorkbook
+            HSSFWorkbook wb = ExcelUtil.getHSSFWorkbook(sheetName, title, content, null);
+            //响应到客户端
+            try {
+                this.setResponseHeader(response, fileName);
+                OutputStream os = response.getOutputStream();
+                wb.write(os);
+                os.flush();
+                os.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }

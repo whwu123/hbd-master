@@ -10,7 +10,7 @@
 <div class="row">
 
     <div class="bs-example  border-bottom white-bg dashboard-header">
-        <button class="btn btn-primary" style="    margin-bottom: 5px" type="button" onclick="daochuIndex();"><i class="fa fa-level-up"></i>导出</button>
+        <button class="btn btn-primary" style="    margin-bottom: 5px" type="button" onclick="daochuIndex('${xuexiaoName}');"><i class="fa fa-level-up"></i>导出</button>
         <table class="table table-hover">
 
             <thead>
@@ -26,17 +26,17 @@
             <thead>
             <tr class="warning" style="font-weight: bold">
                 <td>#</td>
-                <td>${xuexiaoModel.schoolName}</td>
-                <td style="color: red">${xuexiaoModel.xuepingxian}</td>
-                <td style="color: red">${xuexiaoModel.yiwaixian}</td>
-                <td style="color: red">${xuexiaoModel.jianhurenxian}</td>
-                <td style="color: red">${xuexiaoModel.total}</td>
+                <td style="color: #337ab7">${xuexiaoModel.schoolName}</td>
+                <td style="color: #148cf3">${xuexiaoModel.xuepingxian}</td>
+                <td style="color: #148cf3">${xuexiaoModel.yiwaixian}</td>
+                <td style="color: #148cf3">${xuexiaoModel.jianhurenxian}</td>
+                <td style="color: #148cf3">${xuexiaoModel.total}</td>
             </tr>
             </thead>
             <tbody>
             <c:forEach var="im" items="${indexmodelSchoolList}" varStatus="s">
                 <tr>
-                    <td scope="row">${s.count}</td>
+                    <td>${s.count}</td>
                     <td>${im.nianjiName}</td>
                     <td>${im.xuepingxian}</td>
                     <td>${im.yiwaixian}</td>
@@ -54,6 +54,10 @@
     function myFunction(schoolName){
         alert(schoolName);
         window.location.href="http//:www.baidu.com";
+    }
+
+    function daochuIndex(xuexiaoName){
+        window.location.href="reportController/exportXuexiao?name="+xuexiaoName;
     }
 
 </script>
