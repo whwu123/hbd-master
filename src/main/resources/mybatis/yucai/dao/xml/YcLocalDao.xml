@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.active4j.hr.yucai.dao.YcLocalDao">
+
+	<select id="selectFormJiaoYuId" resultType="com.active4j.hr.yucai.entity.YcLocalEntity">
+		SELECT * FROM `yc_local`
+		<where>
+			<if test="quXianId!=null and quXianId!=''">
+				and PARENT_ID = #{quXianId}
+			</if>
+			<if test="jiaoYuId!=null and jiaoYuId!=''">
+				and DESCRIPTION = #{jiaoYuId}
+			</if>
+
+			<if test="type!=null and type!=''">
+				and TYPE = #{type}
+			</if>
+			ORDER BY  CREATE_DATE asc
+		</where>
+
+	</select>
+	
+
+	
+</mapper>

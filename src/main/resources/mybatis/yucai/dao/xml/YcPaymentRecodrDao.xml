@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.active4j.hr.yc.dao.YcPaymentRecordDao">
+
+	<select id="getschoolNameByQuxianName" resultType="java.lang.String">
+		SELECT DISTINCT
+			student_school
+		FROM
+			`yc_paymentrecord` where quxian_department = #{quxianName}
+	</select>
+
+	<select id="getCount" resultType="java.lang.String">
+		SELECT COUNT(student_name)  FROM `yc_paymentrecord` where student_school  = #{schoolName} and type = #{typebaoxian};
+
+
+	</select>
+
+	<select id="getSum" resultType="java.lang.String">
+		SELECT SUM(pay_money)  FROM `yc_paymentrecord` where student_school  = #{schoolName} and type = #{typebaoxian};
+
+	</select>
+
+	<select id="getCountQuxian" resultType="java.lang.String">
+		SELECT COUNT(student_name)  FROM `yc_paymentrecord` where quxian_department  = #{quxianDepartment} and type = #{typebaoxian};
+
+
+	</select>
+
+	<select id="getSumQuxian" resultType="java.lang.String">
+		SELECT SUM(pay_money)  FROM `yc_paymentrecord` where quxian_department  = #{quxianDepartment} and type = #{typebaoxian};
+
+	</select>
+
+	<!--根据学校查询年级-->
+	<select id="getNianjiNameBySchoolName" resultType="java.lang.String">
+		SELECT DISTINCT student_nianji  FROM `yc_paymentrecord` where student_school = #{schoolName}  ORDER BY student_nianji asc
+
+	</select>
+
+</mapper>
