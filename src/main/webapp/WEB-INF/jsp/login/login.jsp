@@ -22,7 +22,7 @@
     <div class="middle-box text-center loginscreen  animated fadeInDown">
         <div>
             <div>
-                <h3 class="logo-name" style="margin-left: -30px">HBD</h3>
+                <h3 class="logo-name" style="margin-left: -30px;font-weight: 50">HBD</h3>
             </div>
             <h3>怀保代</h3>
             <form class="form-horizontal m-t" id="signupForm" action="login" method="post">

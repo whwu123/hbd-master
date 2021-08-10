@@ -9,6 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication(exclude = {org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class,
 		org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration.class})
 @EnableScheduling //开启定时任务注解
+
 public class Active4jhrApplication extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {
@@ -19,5 +20,6 @@ public class Active4jhrApplication extends SpringBootServletInitializer{
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(Active4jhrApplication.class);
 	}
-	
+
+
 } 
