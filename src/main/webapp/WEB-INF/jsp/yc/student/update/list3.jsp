@@ -26,7 +26,7 @@
 <t:datagrid actionUrl="ycUpdateStulogController/datagrid3" tableContentId="jqGrid_wrapper" searchGroupId="searchGroupId" fit="true" caption="学生管理" name="table_list_2" pageSize="20"  sortOrder="desc" sortName="createDate" >
 	<t:dgCol name="id" label="编号" hidden="true" key="true" width="20"></t:dgCol>
 	<c:if test="${isquxianAdmin=='0'}">
-		<t:dgCol name="quxianDepartment" label="区县名称" width="160" query="true"></t:dgCol>
+		<t:dgCol name="quxianDepartment" label="区县名称" width="160" query="true"  replace="${departsReplace}"></t:dgCol>
 		<t:dgCol name="studentSchool" label="学校名称" width="120" query="true"></t:dgCol>
 	</c:if>
 	<c:if test="${isquxianAdmin=='1'}">

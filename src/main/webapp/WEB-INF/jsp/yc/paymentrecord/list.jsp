@@ -25,7 +25,7 @@
 
 
 <!-- 脚本部分 -->
-<t:datagrid actionUrl="ycPayMentRecord/datagrid" tableContentId="jqGrid_wrapper" searchGroupId="searchGroupId" fit="true" caption="学生管理" name="table_list_2" pageSize="20"  sortOrder="desc">
+<t:datagrid actionUrl="ycPayMentRecord/datagrid" tableContentId="jqGrid_wrapper" searchGroupId="searchGroupId" fit="true" caption="学生管理" name="table_list_2" pageSize="20"  sortOrder="desc" sortName="createDate">
 	<t:dgCol name="id" label="编号" hidden="true" key="true" width="20"></t:dgCol>
 	<c:if test="${isquxianAdmin=='1'}">
 		<t:dgCol name="quxianDepartment" label="区县名称" width="90"  ></t:dgCol>

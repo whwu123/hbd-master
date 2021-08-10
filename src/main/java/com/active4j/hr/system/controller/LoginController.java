@@ -1,11 +1,16 @@
 package com.active4j.hr.system.controller;
 
+import com.active4j.hr.common.constant.GlobalConstant;
+import com.active4j.hr.core.annotation.Log;
+import com.active4j.hr.core.model.AjaxJson;
+import com.active4j.hr.core.model.LogType;
+import com.active4j.hr.core.shiro.ShiroUtils;
 import com.active4j.hr.system.entity.SysRoleEntity;
 import com.active4j.hr.system.model.SysUserModel;
 import com.active4j.hr.system.service.SysUserService;
 import com.active4j.hr.yc.entity.Indexmodel;
-import com.active4j.hr.yc.entity.YcPaymentRecord;
 import com.active4j.hr.yc.service.YcPaymentRecordService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -17,14 +22,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.active4j.hr.common.constant.GlobalConstant;
-import com.active4j.hr.core.annotation.Log;
-import com.active4j.hr.core.model.AjaxJson;
-import com.active4j.hr.core.model.LogType;
-import com.active4j.hr.core.shiro.ShiroUtils;
-
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +62,7 @@ public class LoginController {
 			if(roleEntity.getRoleCode().equals("quxianAdmin")){
 				isquxianAdmin = "1";
 				model.addAttribute("deptName",user.getDeptName());
-				YcPaymentRecord ycPaymentRecord = ycPaymentRecordService.getById("8");
+				//YcPaymentRecord ycPaymentRecord = ycPaymentRecordService.getById("8");
 				List<String> schoolName = ycPaymentRecordService.getschoolNameByQuxianName(user.getDeptName());
 				List<Indexmodel> indexmodelList = new ArrayList<>();
 				if(schoolName.size()>0){
@@ -132,6 +129,7 @@ public class LoginController {
 
 			}else if(roleEntity.getRoleCode().equals("xuexiaoAdmin")){
 				isquxianAdmin = "2";
+				//根据学校名称拿到年级
 
 
 

@@ -1,7 +1,6 @@
 package com.active4j.hr.yc.dao;
 
 import com.active4j.hr.yc.entity.YcPaymentRecord;
-import com.active4j.hr.yc.entity.YcStudentEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -45,5 +44,14 @@ public interface YcPaymentRecordDao extends BaseMapper<YcPaymentRecord> {
      * @return List<
      */
     public String getSumQuxian(@Param("quxianDepartment")String quxianDepartment ,@Param("typebaoxian")String type );
+
+
+
+    /**
+     * @description
+     *  	根据学校名称拿到学校的缴费年级名称
+     * @return List<String>
+     */
+    public List<String> getnianjiNameBySchoolName(@Param("quxianName")String schoolName);
 
 }
