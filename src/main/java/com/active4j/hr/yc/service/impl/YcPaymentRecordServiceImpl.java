@@ -63,4 +63,19 @@ public class YcPaymentRecordServiceImpl extends ServiceImpl<YcPaymentRecordDao, 
     public String getSumNianjji(String nianjiName, String type,String schoolName) {
         return this.baseMapper.getSumNianjji(nianjiName,type,schoolName);
     }
+
+    @Override
+    public List<String> getQuxianNameByShibumenName(String shibumenName) {
+        return this.baseMapper.getQuxianNameByShibumenName(shibumenName);
+    }
+
+    @Override
+    public String getCountShi(String shiDepartment, String type) {
+        return this.baseMapper.getCountShi(shiDepartment,type);
+    }
+
+    @Override
+    public String getSumShi(String shiDepartment, String type) {
+        return this.baseMapper.getSumShi(shiDepartment,type);
+    }
 }
