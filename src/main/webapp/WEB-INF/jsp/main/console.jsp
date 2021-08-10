@@ -53,18 +53,10 @@
 </div>
 </body>
 <script>
-    function myFunction(schoolName){
-        window.open("webController/toSchoolIndex?name="+schoolName)
-
-
-    }
-
     function daochuIndex(quxianName){
         window.location.href="reportController/exportQuxian?name="+quxianName;
 
     }
-
-
 </script>
 
 </html>

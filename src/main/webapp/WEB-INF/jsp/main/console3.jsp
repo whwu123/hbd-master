@@ -34,10 +34,12 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="im" items="${indexmodelSchoolList}" varStatus="s">
+            <c:forEach var="im" items="${indexmodelShilList}" varStatus="s">
                 <tr>
                     <td>${s.count}</td>
-                    <td>${im.nianjiName}</td>
+                    <td>
+                        <a href="webController/toQuxianIndex?name=${im.quxianName}" data-index="5">${im.quxianName}</a>
+                    </td>
                     <td>${im.xuepingxian}</td>
                     <td>${im.yiwaixian}</td>
                     <td>${im.jianhurenxian}</td>
