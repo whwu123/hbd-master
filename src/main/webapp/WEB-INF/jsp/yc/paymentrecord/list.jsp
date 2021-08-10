@@ -45,7 +45,7 @@
 
 	<t:dgCol name="studentBanji" label="班级" width="80"  query="true"></t:dgCol>
 	<t:dgCol name="type" label="险种"  width="120" replace="监护人责任险_监护人责任险,交通意外、重大疾病险_交通意外、重大疾病险,学生平安保险_学生平安保险" query="true"></t:dgCol>
-	<%--<t:dgCol name="xianzhongType" label="险种" width="120" query="true" replace="1_1"></t:dgCol>--%>
+	<t:dgCol name="baofeiMoney" label="保险金额" width="80" ></t:dgCol>
 	<t:dgCol name="casName" label="方案名称" width="90" query="true"></t:dgCol>
 	<t:dgCol name="zhifuNumber" label="支付流水号" width="90" query="true"></t:dgCol>
 	<t:dgCol name="payMoney" label="支付金额" width="90" ></t:dgCol>

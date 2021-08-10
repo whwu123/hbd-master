@@ -106,7 +106,7 @@ public class LoginController {
 					totalXpxSUm = "0";
 				}
 				quxianModel.setXuepingxian(totalXpxCount+"人/"+totalXpxSUm+"元");
-				//查询区县意外的总人数和总金额
+				//查询区县意外险的总人数和总金额
 				String totalYwCount = ycPaymentRecordService.getCountQuxian(user.getDeptName(),GlobalConstant.hbd_baoxian_yiwai);
 				String totalYwSUm = ycPaymentRecordService.getSumQuxian(user.getDeptName(),GlobalConstant.hbd_baoxian_yiwai);
 				if(totalYwSUm == null){
@@ -130,12 +130,69 @@ public class LoginController {
 			}else if(roleEntity.getRoleCode().equals("xuexiaoAdmin")){
 				isquxianAdmin = "2";
 				//根据学校名称拿到年级
+				List<String> nianjiNameList = ycPaymentRecordService.getnianjiNameBySchoolName(user.getDeptName());
+				model.addAttribute("nianjiNameList",nianjiNameList);
+				List<Indexmodel> indexmodelSchoolList = new ArrayList<>();
+				if(nianjiNameList.size()>0){
+					for (int k = 0;k<nianjiNameList.size();k++){
+						Indexmodel indexmodel2 = new Indexmodel();
+						indexmodel2.setSchoolName(user.getDeptName());
+						indexmodel2.setNianjiName(nianjiNameList.get(k));
+						String xpxCountNianji = ycPaymentRecordService.getCountNianjji(nianjiNameList.get(k),GlobalConstant.hbd_baoxian_xuesheng,user.getDeptName());
+						String xpxSumNianji = ycPaymentRecordService.getSumNianjji(nianjiNameList.get(k),GlobalConstant.hbd_baoxian_xuesheng,user.getDeptName());
+						if(xpxSumNianji == null){
+							xpxSumNianji = "0";
+						}
+						indexmodel2.setXuepingxian(xpxCountNianji+"人/"+xpxSumNianji+"元");
 
+						String ywCountNianji = ycPaymentRecordService.getCountNianjji(nianjiNameList.get(k),GlobalConstant.hbd_baoxian_yiwai,user.getDeptName());
+						String ywSumNianji = ycPaymentRecordService.getSumNianjji(nianjiNameList.get(k),GlobalConstant.hbd_baoxian_yiwai,user.getDeptName());
+						if(ywSumNianji == null){
+							ywSumNianji = "0";
+						}
+						indexmodel2.setYiwaixian(ywCountNianji+"人/"+ywSumNianji+"元");
 
-
-
+						String jhrCountNianji = ycPaymentRecordService.getCountNianjji(nianjiNameList.get(k),GlobalConstant.hbd_baoxian_jianhuren,user.getDeptName());
+						String jhrSumNianji = ycPaymentRecordService.getSumNianjji(nianjiNameList.get(k),GlobalConstant.hbd_baoxian_jianhuren,user.getDeptName());
+						if(jhrSumNianji == null){
+							jhrSumNianji = "0";
+						}
+						indexmodel2.setJianhurenxian(jhrCountNianji+"人/"+jhrSumNianji+"元");
+						int totalCountNianji = Integer.parseInt(xpxCountNianji)+ Integer.parseInt(ywCountNianji)+ Integer.parseInt(jhrCountNianji);
+						int totalSumNianji = Integer.parseInt(xpxSumNianji)+ Integer.parseInt(ywSumNianji)+ Integer.parseInt(jhrSumNianji);
+						indexmodel2.setTotal(totalCountNianji+"人/"+totalSumNianji+"元");
+						indexmodelSchoolList.add(indexmodel2);
+					}
+				}
+				model.addAttribute("indexmodelSchoolList",indexmodelSchoolList);
+				Indexmodel xuexiaoModel = new Indexmodel();
+				xuexiaoModel.setSchoolName(user.getDeptName());
+				//查询学校学平险的总人数和总金额
+				String totalXpxSchoolCount = ycPaymentRecordService.getCountSchool(user.getDeptName(),GlobalConstant.hbd_baoxian_xuesheng);
+				String totalXpxSchoolSUm = ycPaymentRecordService.getSumSchool(user.getDeptName(),GlobalConstant.hbd_baoxian_xuesheng);
+				if(totalXpxSchoolSUm == null){
+					totalXpxSchoolSUm = "0";
+				}
+				xuexiaoModel.setXuepingxian(totalXpxSchoolCount+"人/"+totalXpxSchoolSUm+"元");;
+				//查询区县意外险的总人数和总金额
+				String totalYwSchoolCount = ycPaymentRecordService.getCountSchool(user.getDeptName(),GlobalConstant.hbd_baoxian_yiwai);
+				String totalYwSchoolSUm = ycPaymentRecordService.getSumSchool(user.getDeptName(),GlobalConstant.hbd_baoxian_yiwai);
+				if(totalYwSchoolSUm == null){
+					totalYwSchoolSUm = "0";
+				}
+				xuexiaoModel.setYiwaixian(totalYwSchoolCount+"人/"+totalYwSchoolSUm+"元");;
+				//查询区县监护人险的总人数和总金额
+				String totalJhrSchoolCount = ycPaymentRecordService.getCountSchool(user.getDeptName(),GlobalConstant.hbd_baoxian_jianhuren);
+				String totaljhrSchoolSUm = ycPaymentRecordService.getSumSchool(user.getDeptName(),GlobalConstant.hbd_baoxian_jianhuren);
+				if(totaljhrSchoolSUm == null){
+					totaljhrSchoolSUm = "0";
+				}
+				xuexiaoModel.setJianhurenxian(totalJhrSchoolCount+"人/"+totaljhrSchoolSUm+"元");;
+				int totalSchoolCount = Integer.parseInt(totalXpxSchoolCount)+ Integer.parseInt(totalYwSchoolCount)+ Integer.parseInt(totalJhrSchoolCount);
+				int totalSchoolSum = Integer.parseInt(totalXpxSchoolSUm)+ Integer.parseInt(totalYwSchoolSUm)+ Integer.parseInt(totaljhrSchoolSUm);
+				xuexiaoModel.setTotal(totalSchoolCount+"人/"+totalSchoolSum+"元");
 				model.addAttribute("xuexiaoName",user.getDeptName());
-
+				model.addAttribute("xuexiaoModel",xuexiaoModel);
 				return "main/console2";
 			}
 		}

@@ -1,9 +1,7 @@
 package com.active4j.hr.yc.service;
 
 import com.active4j.hr.yc.entity.YcPaymentRecord;
-import com.active4j.hr.yc.entity.YcStudentEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -44,5 +42,40 @@ public interface YcPaymentRecordService extends IService<YcPaymentRecord>{
      * @return List<
      */
     public String getSumQuxian(String quxianDepartment ,String type );
+
+    /**
+     * @description
+     *  	根据学校名称拿到学校的缴费年级名称
+     * @return List<String>
+     */
+    public List<String> getnianjiNameBySchoolName(String schoolName);
+
+    /**
+     * @description
+     *  	根据学校名称和险种类型查询出缴费总人数
+     * @return
+     */
+    public String getCountSchool(String schoolName , String type );
+
+    /**
+     * @description
+     *  	根据学校名称和险种类型查询出缴费总金额
+     * @return List<
+     */
+    public String getSumSchool(String schoolName ,String type );
+
+    /**
+     * @description
+     *  	根据年级名称和险种类型查询出缴费总人数
+     * @return
+     */
+    public String getCountNianjji(String nianjiName , String type,String schoolName );
+
+    /**
+     * @description
+     *  	根据年级名称和险种类型查询出缴费总金额
+     * @return List<
+     */
+    public String getSumNianjji(String nianjiName ,String type,String schoolName);
 
 }

@@ -1,13 +1,9 @@
 package com.active4j.hr.yc.service.impl;
 
 import com.active4j.hr.yc.dao.YcPaymentRecordDao;
-import com.active4j.hr.yc.dao.YcStudentDao;
 import com.active4j.hr.yc.entity.YcPaymentRecord;
-import com.active4j.hr.yc.entity.YcStudentEntity;
 import com.active4j.hr.yc.service.YcPaymentRecordService;
-import com.active4j.hr.yc.service.YcStudentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,5 +37,30 @@ public class YcPaymentRecordServiceImpl extends ServiceImpl<YcPaymentRecordDao, 
     @Override
     public String getSumQuxian(String quxianDepartment, String type) {
         return this.baseMapper.getSumQuxian(quxianDepartment,type);
+    }
+
+    @Override
+    public List<String> getnianjiNameBySchoolName(String schoolName) {
+        return this.baseMapper.getnianjiNameBySchoolName(schoolName);
+    }
+
+    @Override
+    public String getCountSchool(String schoolName, String type) {
+        return this.baseMapper.getCountSchool(schoolName,type);
+    }
+
+    @Override
+    public String getSumSchool(String schoolName, String type) {
+        return this.baseMapper.getSumSchool(schoolName,type);
+    }
+
+    @Override
+    public String getCountNianjji(String nianjiName, String type,String schoolName) {
+        return this.baseMapper.getCountNianjji(nianjiName,type,schoolName);
+    }
+
+    @Override
+    public String getSumNianjji(String nianjiName, String type,String schoolName) {
+        return this.baseMapper.getSumNianjji(nianjiName,type,schoolName);
     }
 }

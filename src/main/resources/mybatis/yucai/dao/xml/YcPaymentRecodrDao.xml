@@ -16,7 +16,7 @@
 	</select>
 
 	<select id="getSum" resultType="java.lang.String">
-		SELECT SUM(pay_money)  FROM `yc_paymentrecord` where student_school  = #{schoolName} and type = #{typebaoxian};
+		SELECT SUM(baofei_money)  FROM `yc_paymentrecord` where student_school  = #{schoolName} and type = #{typebaoxian};
 
 	</select>
 
@@ -27,14 +27,33 @@
 	</select>
 
 	<select id="getSumQuxian" resultType="java.lang.String">
-		SELECT SUM(pay_money)  FROM `yc_paymentrecord` where quxian_department  = #{quxianDepartment} and type = #{typebaoxian};
+		SELECT SUM(baofei_money)  FROM `yc_paymentrecord` where quxian_department  = #{quxianDepartment} and type = #{typebaoxian};
 
 	</select>
 
 	<!--根据学校查询年级-->
-	<select id="getNianjiNameBySchoolName" resultType="java.lang.String">
+	<select id="getnianjiNameBySchoolName" resultType="java.lang.String">
 		SELECT DISTINCT student_nianji  FROM `yc_paymentrecord` where student_school = #{schoolName}  ORDER BY student_nianji asc
 
 	</select>
+	<!--根据学校总人数-->
+	<select id="getCountSchool" resultType="java.lang.String">
+		SELECT COUNT(student_name)  FROM `yc_paymentrecord` where student_school  = #{schoolName} and type = #{typebaoxian}
+	</select>
+	<!--根据学校总费用-->
+	<select id="getSumSchool" resultType="java.lang.String">
+		SELECT SUM(baofei_money)  FROM `yc_paymentrecord` where student_school  = #{schoolName} and type = #{typebaoxian}
+	</select>
+
+	<!--根据年级查询出险种人数-->
+	<select id="getCountNianjji" resultType="java.lang.String">
+		SELECT COUNT(student_name)  FROM `yc_paymentrecord` where student_nianji  = #{nianjiName} and type = #{typebaoxian} and student_school  = #{schoolName};
+	</select>
+
+	<!--根据年级查询出险种缴费总数-->
+	<select id="getSumNianjji" resultType="java.lang.String">
+		SELECT SUM(baofei_money)  FROM `yc_paymentrecord` where student_nianji  = #{nianjiName} and type = #{typebaoxian} and student_school  = #{schoolName};
+	</select>
+
 
 </mapper>

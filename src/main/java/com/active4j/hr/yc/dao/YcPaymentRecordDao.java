@@ -46,12 +46,41 @@ public interface YcPaymentRecordDao extends BaseMapper<YcPaymentRecord> {
     public String getSumQuxian(@Param("quxianDepartment")String quxianDepartment ,@Param("typebaoxian")String type );
 
 
-
     /**
      * @description
      *  	根据学校名称拿到学校的缴费年级名称
      * @return List<String>
      */
-    public List<String> getnianjiNameBySchoolName(@Param("quxianName")String schoolName);
+    public List<String> getnianjiNameBySchoolName(@Param("schoolName")String schoolName);
 
+
+    /**
+     * @description
+     *  	根据学校名称和险种类型查询出缴费总人数
+     * @return
+     */
+    public String getCountSchool(@Param("schoolName")String schoolName ,@Param("typebaoxian")String type);
+
+    /**
+     * @description
+     *  	根据学校名称和险种类型查询出缴费总金额
+     * @return List<
+     */
+    public String getSumSchool(@Param("schoolName")String schoolName ,@Param("typebaoxian")String type);
+
+
+
+    /**
+     * @description
+     *  	根据年级名称和险种类型查询出缴费总人数
+     * @return
+     */
+    public String getCountNianjji(@Param("nianjiName")String nianjiName ,@Param("typebaoxian")String type,@Param("schoolName")String schoolName);
+
+    /**
+     * @description
+     *  	根据年级名称和险种类型查询出缴费总金额
+     * @return List<
+     */
+    public String getSumNianjji(@Param("nianjiName")String nianjiName ,@Param("typebaoxian")String type,@Param("schoolName")String schoolName);
 }
