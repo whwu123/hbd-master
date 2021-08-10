@@ -15,10 +15,6 @@ public class Active4jhrApplication extends SpringBootServletInitializer{
 		SpringApplication.run(Active4jhrApplication.class, args);
 	}
 
-
-
-
-
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(Active4jhrApplication.class);
