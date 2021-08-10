@@ -17,6 +17,7 @@ public class Active4jhrApplication extends SpringBootServletInitializer{
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		System.out.println(" 测试同步git");
 		return application.sources(Active4jhrApplication.class);
 	}
 	
