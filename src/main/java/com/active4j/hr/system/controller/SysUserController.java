@@ -89,7 +89,8 @@ public class SysUserController extends BaseController {
 	public void datagrid(SysUserEntity sysUserEntity, HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
 		//拼接查询条件
 		QueryWrapper<SysUserEntity> queryWrapper = QueryUtils.installQueryWrapper(sysUserEntity, request.getParameterMap(), dataGrid);
-		//queryWrapper.ne("USER_NAME","admin");
+		//隐藏掉管理员用户
+		queryWrapper.ne("USER_NAME","admin");
 		//执行查询
 		IPage<SysUserEntity> lstResult = sysUserService.page(new Page<SysUserEntity>(dataGrid.getPage(), dataGrid.getRows()), queryWrapper);
 		
@@ -149,7 +150,7 @@ public class SysUserController extends BaseController {
 	/**
 	 * 用户录入
 	 * 
-	 * @param user
+	 * @param sysUserEntity
 	 * @param req
 	 * @return
 	 */

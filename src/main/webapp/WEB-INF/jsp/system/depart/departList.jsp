@@ -42,7 +42,7 @@
 		<t:dgCol name="departNo" label="机构编号" width="80"></t:dgCol>
 		<t:dgCol name="type" label="机构类型" width="80" dictionary="tsdepart"></t:dgCol>
 		<%--<t:dgCol name="description" label="职能描述" width="200"></t:dgCol>--%>
-		<%--<t:dgCol name="id" label="ID" width="200"></t:dgCol>--%>
+		<t:dgCol name="id" label="ID" width="200"></t:dgCol>
 		<t:dgCol name="opt" label="操作" width="140"></t:dgCol>
 		<t:dgDelOpt label="删除" url="sys/dept/del?id={id}"/>
 		<t:dgFunOpt label="查看人员" funName="getUsersByDepart(id)" icon="fa fa-check"></t:dgFunOpt>

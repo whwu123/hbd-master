@@ -57,7 +57,7 @@
 				title: '新增附件',
 				shadeClose: true,
 				shade: 0.8,
-				area: ['30%', '20%'],
+				area: ['20%', '18%'],
 				content: url, //iframe的url
 				/*	btn : [  '取消' ],*/
 				yes : function(index, layero) {
