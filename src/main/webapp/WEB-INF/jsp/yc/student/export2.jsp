@@ -20,7 +20,7 @@
                             <div class="form-group">
                                 <%--<label class="col-sm-2 control-label m-b">上传信息:</label>--%>
                                 <div class="col-sm-2">
-                                    <div id="filePicker2">上传信息</div>
+                                    <div id="filePicker2">上传数据</div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div id="fileList2" class="uploader-list"></div>
@@ -62,6 +62,11 @@
             pick : {
                 id : '#filePicker2',
             },
+            accept: {
+                extensions: 'xls,xlsx',
+                mimeTypes: 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            },
+            allows: ".xls,.xlsx"
 
         });
 

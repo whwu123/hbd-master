@@ -43,16 +43,16 @@
 	<t:dgCol name="studentCard" label="身份证" width="120" query="true"></t:dgCol>
 	<t:dgCol name="studentNianji" label="年级" width="90" query="true" dictionary="school_nianji"></t:dgCol>
 
-	<t:dgCol name="studentBanji" label="班级" width="80"  query="true"></t:dgCol>
+	<t:dgCol name="studentBanji" label="班级" width="60"  query="true"></t:dgCol>
 	<t:dgCol name="type" label="险种"  width="120" replace="监护人责任险_监护人责任险,交通意外、重大疾病险_交通意外、重大疾病险,学生平安保险_学生平安保险" query="true"></t:dgCol>
-	<t:dgCol name="baofeiMoney" label="保险金额" width="80" ></t:dgCol>
+	<t:dgCol name="baofeiMoney" label="保险金额" width="70" ></t:dgCol>
 	<t:dgCol name="casName" label="方案名称" width="90" query="true"></t:dgCol>
 	<t:dgCol name="zhifuNumber" label="支付流水号" width="90" query="true"></t:dgCol>
-	<t:dgCol name="payMoney" label="支付金额" width="90" ></t:dgCol>
+	<t:dgCol name="payMoney" label="支付金额" width="70" ></t:dgCol>
 
-	<t:dgCol name="createDate" label="缴费日期" width="90" ></t:dgCol>
-	<t:dgCol name="supplier" label="供应商" width="90" ></t:dgCol>
-	<t:dgCol name="toubaorenName" label="投保人姓名" width="90" query="true"></t:dgCol>
+	<t:dgCol name="createDate" label="缴费日期" width="120" ></t:dgCol>
+	<%--<t:dgCol name="supplier" label="供应商" width="90" ></t:dgCol>--%>
+	<t:dgCol name="toubaorenName" label="投保人姓名" width="70" query="true"></t:dgCol>
 	<t:dgCol name="toubaorenPhone" label="投保人电话" width="90" query="true"></t:dgCol>
 
     <t:dgToolBar label="导出"  type="export" funName="arrowUp"></t:dgToolBar>
@@ -88,7 +88,7 @@
 			title: '导入数据',
 			shadeClose: true,
 			shade: 0.8,
-			area: ['30%', '20%'],
+			area: ['20%', '18%'],
 			content: url, //iframe的url
 			/*	btn : [  '取消' ],*/
 			yes : function(index, layero) {

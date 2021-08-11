@@ -10,7 +10,7 @@
 <div class="row">
 
     <div class="bs-example  border-bottom white-bg dashboard-header">
-        <button class="btn btn-primary" style="    margin-bottom: 5px" type="button" onclick="daochuIndex('${xuexiaoName}');"><i class="fa fa-level-up"></i>导出</button>
+        <button class="btn btn-primary" style="    margin-bottom: 5px" type="button" onclick="daochuIndex('${shiModel.quxianName}');"><i class="fa fa-level-up"></i>导出</button>
         <table class="table table-hover">
 
             <thead>
@@ -53,13 +53,10 @@
 </div>
 </body>
 <script>
-    function myFunction(schoolName){
-        alert(schoolName);
-        window.location.href="http//:www.baidu.com";
-    }
 
-    function daochuIndex(xuexiaoName){
-        window.location.href="reportController/exportXuexiao?name="+xuexiaoName;
+    function daochuIndex(diquName){
+        alert(diquName);
+        window.location.href="reportController/exportDiqu?name="+diquName;
     }
 
 </script>

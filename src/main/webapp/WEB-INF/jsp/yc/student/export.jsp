@@ -62,7 +62,11 @@
             pick : {
                 id : '#filePicker2',
             },
-
+            accept: {
+                extensions: 'xls,xlsx',
+                mimeTypes: 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            },
+            allows: ".xls,.xlsx"
         });
 
 

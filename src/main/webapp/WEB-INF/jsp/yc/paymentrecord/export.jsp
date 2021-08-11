@@ -20,7 +20,7 @@
                             <div class="form-group">
                                 <%--<label class="col-sm-2 control-label m-b">上传文件:</label>--%>
                                 <div class="col-sm-2">
-                                    <div id="filePicker2">上传</div>
+                                    <div id="filePicker2">上传缴费</div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div id="fileList2" class="uploader-list"></div>
@@ -51,7 +51,7 @@
             swf : 'static/webuploader/Uploader.swf',
 
             // 文件接收服务端。
-            server : 'exportChargeController/export',
+            server : 'exportChargeController/exportPayMentRecord',
 
             // 选择文件的按钮。可选。
             // 内部根据当前运行是创建，可能是input元素，也可能是flash.
@@ -59,9 +59,14 @@
                 id : '#filePicker2',
             },
 
+            accept: {
+                extensions: 'xls,xlsx',
+                mimeTypes: 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            },
+            allows: ".xls,.xlsx"
+
+
         });
-
-
         // 文件上传过程中创建进度条实时显示。
         uploader2.on('uploadProgress', function(file, percentage) {
         });
