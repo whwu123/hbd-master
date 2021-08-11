@@ -504,8 +504,23 @@ public class DataGridTag extends TagSupport {
 							}else{
 								sb.append("if(cellvalue == '").append(key).append("') return '").append(map.get(key)).append("'; ");
 							}
+						}else if(StringUtils.equals("ycSexShow", column.getDisplay())) {
+							if(StringUtils.equals(key, "男")) {
+								sb.append("if(cellvalue == '").append(key).append("') return '").append("<span class=\"label label-primary\">" + map.get(key) + "</span>").append("'; ");
+							}else if(StringUtils.equals(key, "女")) {
+								sb.append("if(cellvalue == '").append(key).append("') return '").append("<span class=\"label label-warning\">" + map.get(key) + "</span>").append("'; ");
+							}else{
+								sb.append("if(cellvalue == '").append(key).append("') return '").append(map.get(key)).append("'; ");
+							}
+						}else if(StringUtils.equals("xueli", column.getDisplay())) {
+								sb.append("if(cellvalue == '").append(key).append("') return '").append("<span class=\"label \">" + map.get(key) + "</span>").append("'; ");
+						}else if(StringUtils.equals("nianji", column.getDisplay())) {
+								sb.append("if(cellvalue == '").append(key).append("') return '").append("<span class=\"label label-success\">" + map.get(key) + "</span>").append("'; ");
+						}else if(StringUtils.equals("banji", column.getDisplay())) {
+								sb.append("if(cellvalue == '").append(key).append("') return '").append("<span class=\"label label-danger\">" + map.get(key) + "</span>").append("'; ");
 						}
-						
+
+
 					}
 					sb.append("}, ");
 				}
@@ -564,8 +579,8 @@ public class DataGridTag extends TagSupport {
 //				sb.append("return \"<button class='btn btn-primary btn-xs' type='button'><i class='fa fa-remove'></i> <span class='bold'>删除\" + rowObject.id + \"</span></button>&nbsp;<button class='btn btn-primary btn-xs' type='button'><i class='fa fa-remove'></i> <span class='bold'>删除</span></button>\" ; ");
 				sb.append(" ; }, ");
 			}
-			
-			sb = sb.append("label : \"").append(column.getLabel()).append("\", "); 
+
+			sb = sb.append("label : \"").append(column.getLabel()).append("\", ");
 			sb = sb.append("width : ").append(column.getWidth()).append(", "); 
 			sb = sb.append("fixed : ").append(column.isFixed()).append(", "); 
 			sb = sb.append("hidden : ").append(column.isHidden()).append(", "); 
