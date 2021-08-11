@@ -77,9 +77,9 @@
 
         // 文件上传成功，给item添加成功class, 用样式标记上传成功。
         uploader2.on('uploadSuccess', function(file, data) {
-            var filePath = data.attributes.filePath;
+           // var filePath = data.attributes.filePath;
             $("#fileList2").html(file.name);
-            $("#cvAttachment").val(filePath);
+           // $("#cvAttachment").val(filePath);
         });
 
         // 文件上传失败，显示上传出错。
