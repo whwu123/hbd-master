@@ -38,7 +38,7 @@
 	<!-- 部门表格 -->
 	<t:datagrid actionUrl="sys/dept/departTreeGrid" treeGrid="true" treeColomnName="departName" tableContentId="departTable" fit="true" caption="组织架构列表" name="table_depart_list" pageSize="1000" height="600px" >
 		<t:dgCol name="id" label="编号" hidden="true" key="true" width="20"></t:dgCol>
-		<t:dgCol name="departName" label="机构名称" width="200"></t:dgCol>
+		<t:dgCol name="departName" label="机构名称" width="200" query="true"></t:dgCol>
 		<t:dgCol name="departNo" label="机构编号" width="80"></t:dgCol>
 		<t:dgCol name="type" label="机构类型" width="80" dictionary="tsdepart"></t:dgCol>
 		<%--<t:dgCol name="description" label="职能描述" width="200"></t:dgCol>--%>
