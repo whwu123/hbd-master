@@ -50,7 +50,7 @@
 	<t:dgCol name="studentXueli" label="学历" width="90" query="true"></t:dgCol>
 	<t:dgCol name="studentNianji" label="年级" width="90" query="true" ></t:dgCol>
 	<t:dgCol name="studentBanji" label="班级" width="90" query="true"></t:dgCol>
-	<t:dgToolBar label="导入" icon="fa fa-file-o" type="import" funName="arrowDown" operationCode="stu:user:daoru" ></t:dgToolBar>
+	<t:dgToolBar label="导入" icon="fa fa-file-o" type="import" funName="arrowDown" operationCode="stu:user:daorustudent" ></t:dgToolBar>
 	<t:dgToolBar url="ycStudent/updateStu" type="edit" width="60%" ></t:dgToolBar>
 	<t:dgToolBar type="refresh"></t:dgToolBar>
 </t:datagrid>

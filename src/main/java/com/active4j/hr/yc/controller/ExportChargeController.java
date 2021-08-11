@@ -50,7 +50,6 @@ public class ExportChargeController extends BaseController {
         try{
             Map<String, MultipartFile> fileMap = request.getFileMap();
             for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
-
                 MultipartFile mf = entity.getValue();// 获取上传文件对象
                 InputStream in = mf.getInputStream();
                 // 1.创建workbook对象，读取整个文档
@@ -80,13 +79,11 @@ public class ExportChargeController extends BaseController {
                     sysDeptService.save(sysDeptEntity);
                 }
             }
-
         }catch(Exception e){
             j.setSuccess(false);
             j.setMsg("導入數據是失敗");
             log.error("導入數據是失敗报错，错误信息：｛｝", e.getMessage());
         }
-
         return j;
     }
 
