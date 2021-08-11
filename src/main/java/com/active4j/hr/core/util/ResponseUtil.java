@@ -1,19 +1,16 @@
 package com.active4j.hr.core.util;
 
+import com.active4j.hr.core.web.tag.model.DataGrid;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang3.StringUtils;
-
-import com.active4j.hr.core.web.tag.model.DataGrid;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @title ResponseUtil.java
@@ -66,11 +63,12 @@ public class ResponseUtil {
 		try {
 
 			String result = null;
-
+			Long totalPage = (lstResult.getTotal()-1)/lstResult.getSize()+1;
 			if (StringUtils.isNotEmpty(footer)) {
-				result = listtojson(dataGrid.getField().split(","), lstResult.getTotal(), lstResult.getSize(), lstResult.getRecords(), footer);
+				/*result = listtojson(dataGrid.getField().split(","), lstResult.getTotal(), lstResult.getSize(), lstResult.getRecords(), footer);*/
+				result = listtojson(dataGrid.getField().split(","), lstResult.getTotal(), totalPage, lstResult.getRecords(), footer);
 			} else {
-				result = listtojson(dataGrid.getField().split(","), lstResult.getTotal(), lstResult.getSize(), lstResult.getRecords(), null);
+				result = listtojson(dataGrid.getField().split(","), lstResult.getTotal(), totalPage, lstResult.getRecords(), null);
 			}
 
 			PrintWriter pw = response.getWriter();

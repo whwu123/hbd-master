@@ -31,7 +31,7 @@
                         </tr>
                         </thead>
                         <thead>
-                        <tr class="warning" style="font-weight: bold">
+                        <tr  style="font-weight: bold">
                             <td>#</td>
                             <td style="color: #337ab7">${quxianModel.quxianName}</td>
                             <td style="color: #148cf3">${quxianModel.xuepingxian}</td>
