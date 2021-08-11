@@ -93,7 +93,7 @@ public class LoginController {
 						indexmodel.setJianhurenxian(jhrCount+"人/"+jhrSum+"元");
 						int totalCount = Integer.parseInt(xpxCount)+ Integer.parseInt(ywCount)+ Integer.parseInt(jhrCount);
 						int totalSum = Integer.parseInt(xpxSum)+ Integer.parseInt(ywSum)+ Integer.parseInt(jhrSum);
-						indexmodel.setTotal(totalCount+"人/"+totalSum+"元");
+						indexmodel.setTotal(totalCount+"人次/"+totalSum+"元");
 						indexmodelList.add(indexmodel);
 					}
 				}
@@ -122,9 +122,10 @@ public class LoginController {
 				quxianModel.setJianhurenxian(totalJhrCount+"人/"+totaljhrSUm+"元");
 				int totalQuXianCount = Integer.parseInt(totalXpxCount)+ Integer.parseInt(totalYwCount)+ Integer.parseInt(totalJhrCount);
 				int totalQuXianSum = Integer.parseInt(totalXpxSUm)+ Integer.parseInt(totalYwSUm)+ Integer.parseInt(totaljhrSUm);
-				quxianModel.setTotal(totalQuXianCount+"人/"+totalQuXianSum+"元");
+				quxianModel.setTotal(totalQuXianCount+"人次/"+totalQuXianSum+"元");
 				model.addAttribute("quxianModel",quxianModel);
 				model.addAttribute("indexmodelList",indexmodelList);
+				model.addAttribute("isquxianAdmin",isquxianAdmin);
 				return "main/console";
 
 			}else if(roleEntity.getRoleCode().equals("xuexiaoAdmin")){
@@ -160,7 +161,7 @@ public class LoginController {
 						indexmodel2.setJianhurenxian(jhrCountNianji+"人/"+jhrSumNianji+"元");
 						int totalCountNianji = Integer.parseInt(xpxCountNianji)+ Integer.parseInt(ywCountNianji)+ Integer.parseInt(jhrCountNianji);
 						int totalSumNianji = Integer.parseInt(xpxSumNianji)+ Integer.parseInt(ywSumNianji)+ Integer.parseInt(jhrSumNianji);
-						indexmodel2.setTotal(totalCountNianji+"人/"+totalSumNianji+"元");
+						indexmodel2.setTotal(totalCountNianji+"人次/"+totalSumNianji+"元");
 						indexmodelSchoolList.add(indexmodel2);
 					}
 				}
@@ -190,14 +191,81 @@ public class LoginController {
 				xuexiaoModel.setJianhurenxian(totalJhrSchoolCount+"人/"+totaljhrSchoolSUm+"元");;
 				int totalSchoolCount = Integer.parseInt(totalXpxSchoolCount)+ Integer.parseInt(totalYwSchoolCount)+ Integer.parseInt(totalJhrSchoolCount);
 				int totalSchoolSum = Integer.parseInt(totalXpxSchoolSUm)+ Integer.parseInt(totalYwSchoolSUm)+ Integer.parseInt(totaljhrSchoolSUm);
-				xuexiaoModel.setTotal(totalSchoolCount+"人/"+totalSchoolSum+"元");
+				xuexiaoModel.setTotal(totalSchoolCount+"人次/"+totalSchoolSum+"元");
 				model.addAttribute("xuexiaoName",user.getDeptName());
 				model.addAttribute("xuexiaoModel",xuexiaoModel);
+				model.addAttribute("isquxianAdmin",isquxianAdmin);
 				return "main/console2";
+			}else if(roleEntity.getRoleCode().equals("diquAdmin")  || roleEntity.getRoleCode().equals("admin")){
+				List<Indexmodel> indexmodelShilList = new ArrayList<>();
+				Indexmodel shiModel = new Indexmodel();
+				String shiDept = "怀化分公司";
+				shiModel.setQuxianName(shiDept);
+				//查询学平险的总人数和总金额
+				String totalXpxShiCount = ycPaymentRecordService.getCountShi(shiDept,GlobalConstant.hbd_baoxian_xuesheng);
+				String totalXpxShilSUm = ycPaymentRecordService.getSumShi(shiDept,GlobalConstant.hbd_baoxian_xuesheng);
+				if(totalXpxShilSUm == null){
+					totalXpxShilSUm = "0";
+				}
+				shiModel.setXuepingxian(totalXpxShiCount+"人/"+totalXpxShilSUm+"元");;
+				//查询意外险的总人数和总金额
+				String totalYwShiCount = ycPaymentRecordService.getCountShi(shiDept,GlobalConstant.hbd_baoxian_yiwai);
+				String totalYwShiSUm = ycPaymentRecordService.getSumShi(shiDept,GlobalConstant.hbd_baoxian_yiwai);
+				if(totalYwShiSUm == null){
+					totalYwShiSUm = "0";
+				}
+				shiModel.setYiwaixian(totalYwShiCount+"人/"+totalYwShiSUm+"元");;
+				//查询监护人险的总人数和总金额
+				String totalJhrShiCount = ycPaymentRecordService.getCountShi(shiDept,GlobalConstant.hbd_baoxian_jianhuren);
+				String totaljhrShiSUm = ycPaymentRecordService.getSumShi(shiDept,GlobalConstant.hbd_baoxian_jianhuren);
+				if(totaljhrShiSUm == null){
+					totaljhrShiSUm = "0";
+				}
+				shiModel.setJianhurenxian(totaljhrShiSUm+"人/"+totaljhrShiSUm+"元");;
+				int totalShiCount = Integer.parseInt(totalXpxShiCount)+ Integer.parseInt(totalYwShiCount)+ Integer.parseInt(totaljhrShiSUm);
+				int totalShilSum = Integer.parseInt(totalXpxShilSUm)+ Integer.parseInt(totalYwShiSUm)+ Integer.parseInt(totaljhrShiSUm);
+				shiModel.setTotal(totalShiCount+"人次/"+totalShilSum+"元");
+				model.addAttribute("shiModel",shiModel);
+
+
+				List<String> quxianNameList = ycPaymentRecordService.getQuxianNameByShibumenName(shiDept);
+				if(quxianNameList.size()>0){
+					for (int l = 0;l < quxianNameList.size();l++){
+						Indexmodel indexmodel3 = new Indexmodel();
+						indexmodel3.setQuxianName(quxianNameList.get(l));
+						String xpxCountQuxian = ycPaymentRecordService.getCountQuxian(quxianNameList.get(l),GlobalConstant.hbd_baoxian_xuesheng);
+						String xpxSumQuxian = ycPaymentRecordService.getSumQuxian(quxianNameList.get(l),GlobalConstant.hbd_baoxian_xuesheng);
+						if(xpxSumQuxian == null){
+							xpxSumQuxian = "0";
+						}
+						indexmodel3.setXuepingxian(xpxCountQuxian+"人/"+xpxSumQuxian+"元");
+
+						String ywCountQuxian = ycPaymentRecordService.getCountQuxian(quxianNameList.get(l),GlobalConstant.hbd_baoxian_yiwai);
+						String ywSumQuxian = ycPaymentRecordService.getSumQuxian(quxianNameList.get(l),GlobalConstant.hbd_baoxian_yiwai);
+						if(ywSumQuxian == null){
+							ywSumQuxian = "0";
+						}
+						indexmodel3.setYiwaixian(ywCountQuxian+"人/"+ywSumQuxian+"元");
+
+						String jhrCountQuxian = ycPaymentRecordService.getCountQuxian(quxianNameList.get(l),GlobalConstant.hbd_baoxian_jianhuren);
+						String jhrSumQuxian = ycPaymentRecordService.getSumQuxian(quxianNameList.get(l),GlobalConstant.hbd_baoxian_jianhuren);
+						if(jhrSumQuxian == null){
+							jhrSumQuxian = "0";
+						}
+						indexmodel3.setJianhurenxian(jhrCountQuxian+"人/"+jhrSumQuxian+"元");
+						int totalCountQuxian = Integer.parseInt(xpxCountQuxian)+ Integer.parseInt(ywCountQuxian)+ Integer.parseInt(jhrCountQuxian);
+						int totalSumQuxian = Integer.parseInt(xpxSumQuxian)+ Integer.parseInt(ywSumQuxian)+ Integer.parseInt(jhrSumQuxian);
+						indexmodel3.setTotal(totalCountQuxian+"人次/"+totalSumQuxian+"元");
+						indexmodelShilList.add(indexmodel3);
+					}
+
+				}
+				model.addAttribute("indexmodelShilList",indexmodelShilList);
+				return "main/console3";
 			}
 		}
 
-		model.addAttribute("isquxianAdmin",isquxianAdmin);
+
 		return "main/console";
 	}
 	
@@ -231,7 +299,7 @@ public class LoginController {
 				model.addAttribute("xuexiaoName",user.getDeptName());
 			}
 		}
-		System.out.println("isquxianAdmin="+isquxianAdmin);
+		//System.out.println("isquxianAdmin="+isquxianAdmin);
 		model.addAttribute("isquxianAdmin",isquxianAdmin);
 		return "main/main";
 	}

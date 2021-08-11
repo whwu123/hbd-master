@@ -55,5 +55,15 @@
 		SELECT SUM(baofei_money)  FROM `yc_paymentrecord` where student_nianji  = #{nianjiName} and type = #{typebaoxian} and student_school  = #{schoolName};
 	</select>
 
+	<!--根据市名称拿到区县部门名称-->
+    <select id="getQuxianNameByShibumenName" resultType="java.lang.String">
+		SELECT DISTINCT quxian_department FROM `yc_paymentrecord` where shi_department = #{shibumenName}  ORDER BY student_nianji asc
+	</select>
+	<select id="getCountShi" resultType="java.lang.String">
+		SELECT COUNT(zhifu_number)  FROM `yc_paymentrecord` where shi_department  = #{shiDepartment} and type = #{typebaoxian};
+	</select>
+	<select id="getSumShi" resultType="java.lang.String">
+		SELECT SUM(baofei_money)  FROM `yc_paymentrecord` where shi_department  = #{shiDepartment} and type = #{typebaoxian};
+	</select>
 
 </mapper>

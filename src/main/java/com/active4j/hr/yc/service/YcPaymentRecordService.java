@@ -2,6 +2,7 @@ package com.active4j.hr.yc.service;
 
 import com.active4j.hr.yc.entity.YcPaymentRecord;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -77,5 +78,26 @@ public interface YcPaymentRecordService extends IService<YcPaymentRecord>{
      * @return List<
      */
     public String getSumNianjji(String nianjiName ,String type,String schoolName);
+
+    /**
+     * @description
+     *  	根据市名称拿到区县部门名称
+     * @return List<String>
+     */
+    public List<String> getQuxianNameByShibumenName(String shibumenName);
+
+    /**
+     * @description
+     *  	根据地市名称和险种类型查询出缴费总人数
+     * @return
+     */
+    public String getCountShi(String shiDepartment , String type );
+
+    /**
+     * @description
+     *  	根据地市名称和险种类型查询出缴费总金额
+     * @return List<
+     */
+    public String getSumShi(@Param("shiDepartment")String shiDepartment ,@Param("typebaoxian")String type );
 
 }
