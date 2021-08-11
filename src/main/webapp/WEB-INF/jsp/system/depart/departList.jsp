@@ -49,6 +49,7 @@
 		<t:dgToolBar url="sys/dept/add" type="add" width="60%"></t:dgToolBar>
 		<t:dgToolBar url="sys/dept/update" type="edit" width="60%"></t:dgToolBar>
 		<t:dgToolBar label="导入" icon="fa fa-file-o" type="import" funName="arrowDown" operationCode="sys:dept:importschool" ></t:dgToolBar>
+		<t:dgToolBar type="refresh"></t:dgToolBar>
 	</t:datagrid>
 	<!-- 部门下人员表格 -->
 	<t:datagrid actionUrl="sys/dept/userDatagrid" tableContentId="usersTable" searchGroupId="usersGroupId" fit="true" caption="用户管理" name="table_user_list" pageSize="20" sortName="createDate" sortOrder="desc" height="500px">
