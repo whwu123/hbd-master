@@ -44,12 +44,12 @@
 		<t:dgCol name="studentSchool" label="学校名称" width="120" ></t:dgCol>
 	</c:if>
 	<t:dgCol name="studentName" label="学生名字" width="90" query="true"></t:dgCol>
-	<t:dgCol name="studentSex" label="性别" width="90" query="true" replace="男_男,女_女"></t:dgCol>
-	<t:dgCol name="studentSchoolBm" label="院系编码" width="90" query="true"></t:dgCol>
-	<t:dgCol name="studentCard" label="身份证" width="120" query="true"></t:dgCol>
-	<t:dgCol name="studentXueli" label="学历" width="90" query="true"></t:dgCol>
-	<t:dgCol name="studentNianji" label="年级" width="90" query="true" ></t:dgCol>
-	<t:dgCol name="studentBanji" label="班级" width="90" query="true"></t:dgCol>
+	<t:dgCol name="studentSex" label="性别" width="90" query="true" replace="男_男,女_女" display="ycSexShow"></t:dgCol>
+	<%--<t:dgCol name="studentSchoolBm" label="院系编码" width="90" query="true"></t:dgCol>--%>
+	<t:dgCol name="studentCard" label="身份证" width="120" query="true" classes="stuCad"></t:dgCol>
+	<t:dgCol name="studentXueli" label="学历" width="90" query="true" dictionary="xueli_type" display="xueli">></t:dgCol>
+	<t:dgCol name="studentNianji" label="年级" width="90" query="true" dictionary="school_nianji" display="nianji"></t:dgCol>
+	<t:dgCol name="studentBanji" label="班级" width="90" query="true"  ></t:dgCol>
 	<t:dgToolBar label="导入" icon="fa fa-file-o" type="import" funName="arrowDown" operationCode="stu:user:daorustudent" ></t:dgToolBar>
 	<t:dgToolBar url="ycStudent/updateStu" type="edit" width="60%" ></t:dgToolBar>
 	<t:dgToolBar type="refresh"></t:dgToolBar>
