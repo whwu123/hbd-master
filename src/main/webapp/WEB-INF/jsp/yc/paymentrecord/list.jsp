@@ -41,7 +41,7 @@
 	</c:if>
 	<t:dgCol name="studentName" label="学生名字" width="90" query="true"></t:dgCol>
 	<t:dgCol name="studentCard" label="身份证" width="120" query="true"></t:dgCol>
-	<t:dgCol name="studentNianji" label="年级" width="90" query="true" dictionary="school_nianji"></t:dgCol>
+	<t:dgCol name="studentNianji" label="年级" width="90" query="true" dictionary="school_nianji" display="nianji"></t:dgCol>
 
 	<t:dgCol name="studentBanji" label="班级" width="60"  query="true"></t:dgCol>
 	<t:dgCol name="type" label="险种"  width="120" replace="监护人责任险_监护人责任险,交通意外、重大疾病险_交通意外、重大疾病险,学生平安保险_学生平安保险" query="true"></t:dgCol>

@@ -29,21 +29,21 @@
 	<t:dgCol name="id" label="编号" hidden="true" key="true" width="20"></t:dgCol>
 
 	<c:if test="${isquxianAdmin=='0'}">
-		<t:dgCol name="quxianDepartment" label="区县名称" width="160" query="true"  replace="${departsReplace}"></t:dgCol>
+		<t:dgCol name="quxianDepartment" label="区县名称" width="160" query="true"  replace="${departsReplace}" ></t:dgCol>
 		<t:dgCol name="studentSchool" label="学校名称" width="120" query="true"></t:dgCol>
 	</c:if>
 	<c:if test="${isquxianAdmin=='1'}">
-		<t:dgCol name="quxianDepartment" label="区县名称" width="160" ></t:dgCol>
+		<t:dgCol name="quxianDepartment" label="区县名称" width="160" query="true" replace="${departsReplace}" ></t:dgCol>
 		<t:dgCol name="studentSchool" label="学校名称" width="120" query="true"></t:dgCol>
 	</c:if>
 	<c:if test="${isquxianAdmin=='2'}">
-		<t:dgCol name="quxianDepartment" label="区县名称" width="160" ></t:dgCol>
+		<t:dgCol name="quxianDepartment" label="区县名称" width="160" query="true" replace="${departsReplace}" ></t:dgCol>
 		<t:dgCol name="studentSchool" label="学校名称" width="120" ></t:dgCol>
 	</c:if>
 
 	<t:dgCol name="studentName" label="学生名字" width="100" query="true"></t:dgCol>
 	<t:dgCol name="studentCard" label="身份证" width="120" query="true"></t:dgCol>
-	<t:dgCol name="studentNianji" label="年级" width="90" query="true" dictionary="school_nianji"></t:dgCol>
+	<t:dgCol name="studentNianji" label="年级" width="90" query="true" dictionary="school_nianji" display="nianji"></t:dgCol>
 	<t:dgCol name="studentBanji" label="班级" width="80"  query="true"></t:dgCol>
 	<t:dgCol name="toubaorenName" label="投保人姓名" width="90" query="true"></t:dgCol>
 	<t:dgCol name="toubaorenPhone" label="投保人电话" width="90" query="true"></t:dgCol>
