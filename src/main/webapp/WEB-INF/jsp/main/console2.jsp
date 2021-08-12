@@ -34,22 +34,22 @@
                         <thead>
                         <tr  style="font-weight: bold">
                             <td>#</td>
-                            <td style="color: #337ab7">${xuexiaoModel.schoolName}</td>
-                            <td style="color: #148cf3">${xuexiaoModel.xuepingxian}</td>
-                            <td style="color: #148cf3">${xuexiaoModel.yiwaixian}</td>
-                            <td style="color: #148cf3">${xuexiaoModel.jianhurenxian}</td>
-                            <td style="color: #148cf3">${xuexiaoModel.total}</td>
+                            <td ><span class="label label-warning" style="color: white;font-size: 14px;">${xuexiaoModel.schoolName}</span></td>
+                            <td ><span class="label ">${xuexiaoModel.xuepingxian}</span></td>
+                            <td ><span class="label ">${xuexiaoModel.yiwaixian}</span></td>
+                            <td ><span class="label ">${xuexiaoModel.jianhurenxian}</span></td>
+                            <td ><span class="label label-success  ">${xuexiaoModel.total}</span></td>
                         </tr>
                         </thead>
                         <tbody>
                         <c:forEach var="im" items="${indexmodelSchoolList}" varStatus="s">
                             <tr>
                                 <td>${s.count}</td>
-                                <td>${im.nianjiName}</td>
-                                <td>${im.xuepingxian}</td>
-                                <td>${im.yiwaixian}</td>
-                                <td>${im.jianhurenxian}</td>
-                                <td>${im.total}</td>
+                                <td><span class="label label-primary" style="color: white;font-size: 13px;">${im.nianjiName}</span></td>
+                                <td><span class="label ">${im.xuepingxian}</span></td>
+                                <td><span class="label ">${im.yiwaixian}</span></td>
+                                <td><span class="label ">${im.jianhurenxian}</span></td>
+                                <td><span class="label label-success ">${im.total}</span></td>
                             </tr>
                         </c:forEach>
                         </tbody>

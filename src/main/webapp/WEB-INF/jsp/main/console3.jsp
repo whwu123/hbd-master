@@ -34,11 +34,11 @@
                         <thead>
                         <tr  style="font-weight: bold">
                             <td>#</td>
-                            <td style="color: #337ab7">${shiModel.quxianName}</td>
-                            <td style="color: #148cf3">${shiModel.xuepingxian}</td>
-                            <td style="color: #148cf3">${shiModel.yiwaixian}</td>
-                            <td style="color: #148cf3">${shiModel.jianhurenxian}</td>
-                            <td style="color: #148cf3">${shiModel.total}</td>
+                            <td><span class="label label-warning" style="color: white;font-size: 14px;">${shiModel.quxianName}</span></td>
+                            <td ><span class="label ">${shiModel.xuepingxian}</span></td>
+                            <td ><span class="label ">${shiModel.yiwaixian}</span></td>
+                            <td ><span class="label ">${shiModel.jianhurenxian}</span></td>
+                            <td ><span class="label label-success ">${shiModel.total}</span></td>
                         </tr>
                         </thead>
                         <tbody>
@@ -46,12 +46,18 @@
                             <tr>
                                 <td>${s.count}</td>
                                 <td>
-                                    <a href="webController/toQuxianIndex?name=${im.quxianName}" data-index="5">${im.quxianName}</a>
+                                    <span class="label label-primary" >
+                                        <a href="webController/toQuxianIndex?name=${im.quxianName}" style="color: white;font-size: 13px;">${im.quxianName}</a>
+                                    </span>
                                 </td>
-                                <td>${im.xuepingxian}</td>
-                                <td>${im.yiwaixian}</td>
-                                <td>${im.jianhurenxian}</td>
-                                <td>${im.total}</td>
+                                <td><span class="label ">${im.xuepingxian}</span></td>
+                                <td><span class="label ">${im.yiwaixian}</span></td>
+                                <td><span class="label ">${im.jianhurenxian}</span></td>
+                                <td>
+                                    <span class="label label-success ">
+                                        ${im.total}
+                                    </span>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>

@@ -34,24 +34,26 @@
                         <thead>
                         <tr  style="font-weight: bold">
                             <td>#</td>
-                            <td style="color: #337ab7">${quxianModel.quxianName}</td>
-                            <td style="color: #148cf3">${quxianModel.xuepingxian}</td>
-                            <td style="color: #148cf3">${quxianModel.yiwaixian}</td>
-                            <td style="color: #148cf3">${quxianModel.jianhurenxian}</td>
-                            <td style="color: #148cf3">${quxianModel.total}</td>
+                            <td ><span class="label label-warning" style="color: white;font-size: 14px;">${quxianModel.quxianName}</span></td>
+                            <td ><span class="label ">${quxianModel.xuepingxian}</span></td>
+                            <td ><span class="label ">${quxianModel.yiwaixian}</span></td>
+                            <td ><span class="label ">${quxianModel.jianhurenxian}</span></td>
+                            <td ><span class="label label-success ">${quxianModel.total}</span></td>
                         </tr>
                         </thead>
                         <tbody>
                         <c:forEach var="im" items="${indexmodelList}" varStatus="s">
                             <tr  >
-                                <td scope="row">${s.count}</td>
+                                <td>${s.count}</td>
                                 <td>
-                                    <a href="webController/toSchoolIndex?name=${im.schoolName}" data-index="5">${im.schoolName}</a>
+                                    <span class="label label-primary" >
+                                    <a href="webController/toSchoolIndex?name=${im.schoolName}" style="color: white;font-size: 13px;">${im.schoolName}</a>
+                                    </span>
                                 </td>
-                                <td>${im.xuepingxian}</td>
-                                <td>${im.yiwaixian}</td>
-                                <td>${im.jianhurenxian}</td>
-                                <td>${im.total}</td>
+                                <td><span class="label ">${im.xuepingxian}</span></td>
+                                <td><span class="label ">${im.yiwaixian}</span></td>
+                                <td><span class="label ">${im.jianhurenxian}</span></td>
+                                <td><span class="label label-success ">${im.total}</span></td>
                             </tr>
                         </c:forEach>
                         </tbody>
