@@ -55,11 +55,11 @@
                         <h5>学生信息</h5>
                     </div>
                     <div class="ibox-content">
-                        <p>身份证：<a >${ycPaymentRecord.studentCard}</a></p>
-                        <p>学校名称：<a >${ycPaymentRecord.studentSchool}</a></p>
-                        <p>学生姓名：<a >${ycPaymentRecord.studentName}</a></p>
-                        <p>年级：<a >${ycPaymentRecord.studentNianji}</a></p>
-                        <p>班级：<a >${ycPaymentRecord.studentBanji}</a></p>
+                        <p>身份证：<span class="label ">${ycPaymentRecord.studentCard}</span></p>
+                        <p>学校名称：<span class="label ">${ycPaymentRecord.studentSchool}</span></p>
+                        <p>学生姓名：<span class="label ">${ycPaymentRecord.studentName}</span></p>
+                        <p>年级：<span class="label ">${ycPaymentRecord.studentNianji}</span></p>
+                        <p>班级：<span class="label ">${ycPaymentRecord.studentBanji}</span></p>
                     </div>
                 </div>
             </div>
@@ -70,8 +70,8 @@
                         <h5>监护人信息</h5>
                     </div>
                     <div class="ibox-content">
-                        <p>投保人(监护人)姓名：<a >${ycPaymentRecord.toubaorenName}</a></p>
-                        <p>投保人(监护人)电话：<a >${ycPaymentRecord.toubaorenPhone}</a></p>
+                        <p>投保人(监护人)姓名：<span class="label ">${ycPaymentRecord.toubaorenName}</span></p>
+                        <p>投保人(监护人)电话：<span class="label ">${ycPaymentRecord.toubaorenPhone}</span></p>
                     </div>
                 </div>
             </div>
@@ -82,10 +82,10 @@
                         <h5>缴费信息</h5>
                     </div>
                     <div class="ibox-content">
-                        <p>支付流水号：<a style="color:red;"> ${ycPaymentRecord.zhifuNumber}</a></p>
-                        <p>缴费时间：<a ><fmt:formatDate value="${ycPaymentRecord.createDate}" pattern="yyyy-MM-dd HH:mm"/></a></p>
+                        <p>支付流水号：<span class="label label-danger "> ${ycPaymentRecord.zhifuNumber}</span></p>
+                        <p>缴费时间：<span class="label " ><fmt:formatDate value="${ycPaymentRecord.createDate}" pattern="yyyy-MM-dd HH:mm"/></span></p>
                         <c:forEach items="${prList}" var="l">
-                            <p> <c:out value="${l.type}" ></c:out>：<a style="color:red;"> ${l.payMoney}</a> 元</p>
+                            <p> <c:out value="${l.type}" ></c:out>：<span span class="label label-danger "> ${l.payMoney}</span> 元</p>
 
                         </c:forEach>
                     </div>

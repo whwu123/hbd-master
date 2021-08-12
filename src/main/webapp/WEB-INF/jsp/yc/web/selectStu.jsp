@@ -47,7 +47,7 @@
 
         <form class="form-horizontal m-t" id="signupForm" action="webController/selectStuContent" method="post" onsubmit="return toVaild()">
             <h3 style="text-align: left;">缴费学生信息查询</h3>
-            <p style="color: red;">输入其中任何一条信息即可查询</p>
+           <%-- <p style="color: red;">输入其中任何一条信息即可查询</p>--%>
             <hr class="hr_new"/>
 
             <div class="form-group">
@@ -56,13 +56,13 @@
                     <input   type="text" class="form-control" id="xueshengCard" name="xueshengCard"  placeholder="缴过费的学生身份证"/>
                 </div>
             </div>
-            <div class="form-group">
+            <%--<div class="form-group">
                 <label class="col-sm-4 control-label">支付流水号：</label>
                 <div class="col-sm-8">
                     <input  type="text" class="form-control" id="payNum" name="payNum"  placeholder="订单流水号"/>
                 </div>
             </div>
-            <%--<div class="form-group">
+            <div class="form-group">
                 <label class="col-sm-4 control-label">投保人电话：</label>
                 <div class="col-sm-8">
                     <input  type="text" class="form-control" id="toubaorenPhone" name="toubaorenPhone"  placeholder="投保人（监护人）电话"/>
@@ -103,7 +103,7 @@
         var xueshengCard = $("#xueshengCard").val();
         var payNum = $("#payNum").val();
       //  var toubaorenPhone = $("#toubaorenPhone").val();
-        if(xueshengCard != '' || payNum != '' ){
+        if(xueshengCard != '' ){
             return true
         }else{
             toastr.warning('请填写身份证或者支付流水号');

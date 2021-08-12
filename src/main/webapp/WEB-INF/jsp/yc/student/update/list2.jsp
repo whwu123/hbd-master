@@ -48,7 +48,7 @@
 	<t:dgCol name="state" label="状态" replace="未审核_1,已审核_2,已完成_0" width="60" display="level"></t:dgCol>
 	<t:dgCol name="opt" label="操作" width="150"></t:dgCol>
 	<t:dgDelOpt label="删除" url="ycUpdateStulogController/del?id={id}" />
-	<t:dgFunOpt label="修改到缴费系统" funName="updateStuSys(id,studentName)" icon="fa fa-check"></t:dgFunOpt>
+	<t:dgFunOpt label="修改到缴费系统" funName="updateStuSys(id,studentName)" icon="fa fa-check" operationCode="student:update:ycSys"></t:dgFunOpt>
 	<%--<t:dgToolBar url="ycUpdateStulogController/updateStu" type="edit" width="60%" ></t:dgToolBar>--%>
 	<t:dgToolBar type="refresh"></t:dgToolBar>
 </t:datagrid>
