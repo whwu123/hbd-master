@@ -45,7 +45,7 @@
                         <c:forEach var="im" items="${indexmodelSchoolList}" varStatus="s">
                             <tr>
                                 <td>${s.count}</td>
-                                <td><span class="label label-primary" style="color: white;font-size: 13px;">${im.nianjiName}</span></td>
+                                <td><span class="label " style="font-size: 13px;">${im.nianjiName}</span></td>
                                 <td><span class="label ">${im.xuepingxian}</span></td>
                                 <td><span class="label ">${im.yiwaixian}</span></td>
                                 <td><span class="label ">${im.jianhurenxian}</span></td>
